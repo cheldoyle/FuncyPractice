@@ -100,3 +100,52 @@ function tempConverter(temp, type) {
 tempConverter(76, "F");
 tempConverter(39, "C");
 tempConverter(523, "K");
+
+
+let playList = [];
+function manageMusic(action, songName, artistName) {
+    if (action == "add") {
+        let newTrack = {song: songName, artist: artistName};
+        playList.push(newTrack);
+    } else if (action == "remove") {
+        for(let i = 0; i < playList.length; i++) {
+            if (playList[i].song === songName && playList[i].artist === artistName) {
+                playList.splice(i, 1);
+                break;
+            }
+        }
+    }
+};
+function displayMusic() {
+    for (let i = 0; i < playList.length; i++) {
+        console.log(playList[i]);
+    }
+};
+
+manageMusic("add", "Black Parade", "My Chemical Romance");
+manageMusic("add", "Morbid Stuff", "PUP");
+manageMusic("add", "oop", "ow");
+manageMusic("add", "Mary On A Cross", "Ghost");
+manageMusic("remove", "oop", "ow");
+displayMusic();
+
+
+let temperatures = [98, 92, 87, 93, 91, 89, 95];
+function findTempInfo(tempArray) {
+    let tempAvg = 0;
+    let highestTemp = tempArray[0];
+    let lowestTemp = tempArray[0];
+    for (let i = 0; i < tempArray.length; i++) {
+        tempAvg += tempArray[i];
+        if (tempArray[i] > highestTemp) {
+            highestTemp = tempArray[i];
+        } else if (tempArray[i] < lowestTemp) {
+            lowestTemp = tempArray[i];
+        }
+    }
+    tempAvg = tempAvg / tempArray.length;
+
+    console.log(`Average: ${tempAvg}\nHighest: ${highestTemp}\nLowest: ${lowestTemp}`);
+};
+
+findTempInfo(temperatures);
